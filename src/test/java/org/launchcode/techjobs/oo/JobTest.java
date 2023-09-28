@@ -1,14 +1,16 @@
 package org.launchcode.techjobs.oo;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.security.PublicKey;
 
+import static java.lang.System.lineSeparator;
 import static org.junit.Assert.*;
 
 
 public class JobTest {
-    //TODO: Create your unit tests here
+    // Create your unit tests here
 
 
     @Test
@@ -52,9 +54,43 @@ public class JobTest {
     }
 
     @Test
-    public void testToStringStartsAndEndsWithNewLine (){
+    public void testToStringContainsCorrectLabelsAndData (){
+        Job testJob6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        assertEquals(testJob6.toString(), lineSeparator() + "ID: 4" +
+                lineSeparator() + "Name: Product tester" +
+                lineSeparator() + "Employer: ACME" +
+                lineSeparator() + "Location: Desert" +
+                lineSeparator() + "Position Type: Quality control" +
+                lineSeparator() + "Core Competency: Persistence" +
+            lineSeparator());
+
 
     }
+    @Test
+    public  void testToStringHandlesEmptyField () {
+        Job testJob7 = new Job("Product tester", new Employer(""), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency(""));
 
+        assertEquals(testJob7.toString(), lineSeparator() + "ID: 3" +
+                lineSeparator() + "Name: Product tester" +
+                lineSeparator() + "Employer: Data not available" +
+                lineSeparator() + "Location: Desert" +
+                lineSeparator() + "Position Type: Quality control" +
+                lineSeparator() + "Core Competency: Data not available" +
+                lineSeparator());
+    }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine () {
+        Job testJob7 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+
+        String firstChar = String.valueOf(testJob7.toString().charAt(0));
+        String lastChar = String.valueOf(testJob7.toString().charAt(testJob7.toString().length()-1));
+
+        assertEquals(firstChar, lineSeparator());
+        assertEquals(lastChar, lineSeparator());
+
+    }
 
 }

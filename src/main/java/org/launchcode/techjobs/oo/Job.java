@@ -24,14 +24,27 @@ public class Job {
 
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
         this();
-        this.name = name;
+        setName(name);
         this.employer = employer;
         this.location = location;
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
     }
 
-// TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
+
+
+    @Override
+    public String toString() {
+
+        return System.lineSeparator() + "ID: " + getId() +
+                System.lineSeparator() + "Name: " + getName() +
+                System.lineSeparator() + "Employer: " + getEmployer() +
+                System.lineSeparator() + "Location: " + getLocation() +
+                System.lineSeparator() + "Position Type: " + getPositionType() +
+                System.lineSeparator() + "Core Competency: " + getCoreCompetency() +
+                System.lineSeparator();
+    }
+//  Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
 
     @Override
@@ -76,7 +89,7 @@ public class Job {
 
 // SETTERS
     public void setName(String name) {
-        this.name = name;
+        this.name = Objects.requireNonNullElse(name, "Data not available");
     }
 
     public void setEmployer(Employer employer) {
